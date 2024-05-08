@@ -71,7 +71,7 @@ footer p {
   font-size: 15px;
 }
 .post-img {
-  width: 800px;
+  width: 700px;
   height: auto;
 }
 .mainheader {
@@ -117,4 +117,10 @@ nav {
 
 .postheader {
   margin-bottom: 40px;
+}
+
+.container {
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
