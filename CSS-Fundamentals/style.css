@@ -124,3 +124,7 @@ nav {
   margin-left: auto;
   margin-right: auto;
 }
+
+ol {
+  display: inline-block;
+}
