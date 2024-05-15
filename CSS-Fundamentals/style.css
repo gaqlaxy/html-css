@@ -7,6 +7,7 @@ body {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   color: #444444;
   border-top: 10px solid #1098ad;
+  position: relative;
 }
 
 h1,
@@ -128,4 +129,42 @@ nav {
 
 ol {
   display: inline-block;
+}
+
+button {
+  font-size: 20px;
+  padding: 20px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+}
+nav a:link {
+  margin-right: 30px;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+nav a:link:last-child {
+  margin-right: 0;
+}
+
+h1::first-letter {
+  font-style: normal;
+}
+
+h2 {
+  position: relative;
+}
+h2::after {
+  content: "TOP";
+  background-color: yellow;
+  color: #444 ;
+  font-size: 16px;
+  font-weight: bold;
+  display: inline-block;
+  padding: 5px 10px;
+  position: absolute;
+  top: -15px;
+  right: -25px;
 }

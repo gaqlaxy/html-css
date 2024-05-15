@@ -40,6 +40,7 @@ a:hover {
 
 h3 {
   text-transform: uppercase;
+  position: relative;
 }
  
 .addcart {
@@ -81,9 +82,56 @@ h4 {
 
 .info{
   margin-bottom: 15px; 
+  display: inline-block;
 }
 
 .proddet {
  margin-bottom: 15px; 
  margin-top: 30px; 
+}
+
+h3:first-child::before {
+  content: "SALE";
+  color: white;
+  position: absolute;
+  top: -22px;
+  left: -22px;
+  background-color: red;
+  font-size: 12px;
+  padding: 10px;
+}
+
+.color {
+  background-color: black;
+  height: 22px;
+  width: 20px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.color-blue {
+  background-color: blue;
+  height: 22px;
+  width: 20px;
+}
+
+.color-red{
+  background-color: red;
+  height: 22px;
+  width: 20px;
+}
+.color-yellow{
+  background-color: yellow;
+  height: 22px;
+  width: 20px;
+}
+.color-green{
+  background-color: green;
+  height: 22px;
+  width: 20px;
+}
+.color-brown{
+  background-color: brown;
+  height: 22px;
+  width: 20px;
 }
