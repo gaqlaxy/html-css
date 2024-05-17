@@ -62,6 +62,9 @@ footer p {
 }
 .author {
   font-style: italic;
+  padding: 10px;
+  /* display: inline-block; */
+  margin-left: 60px;
 }
 
 .related {
@@ -80,7 +83,7 @@ footer p {
   background-color: #f7f7f7;
   padding: 20px 40px;
   margin-bottom: 60px;
-  height: 80px;
+  height: 60px;
 }
 
 aside {
@@ -122,7 +125,7 @@ nav {
 }
 
 .container {
-  width: 700px;
+  width: 1200px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -167,4 +170,40 @@ h2::after {
   position: absolute;
   top: -15px;
   right: -25px;
+}
+
+/* float */
+
+.authorimg{
+  float: left;
+}
+
+h1 {
+  float: left;
+}
+nav {
+  float: right;
+}
+.clearfix::after {
+  clear: both;
+  content: "";
+  display: block;
+
+}
+
+article {
+background-color: red;
+width: 900px;
+float: left;
+}
+
+aside {
+background-color: green;
+width: 300px;
+float: right;
+}
+
+footer {
+background-color: yellow;
+clear: both;
 }
