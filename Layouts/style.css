@@ -1,6 +1,8 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+
 }
 
 body {
@@ -44,7 +46,7 @@ h4 {
   font-size: 18px;
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 ul, ol {
@@ -69,6 +71,7 @@ footer p {
 
 .related {
   list-style: none;
+  margin-left: 0;
 }
 
 #copyright {
@@ -90,8 +93,7 @@ aside {
   background-color: #f7f7f7;
   border-top: 5px solid #1098ad;
   border-bottom: 5px solid #1098ad;
-  padding: 50px 0;
-  width: 500px;
+  padding: 50px 40px;
 }
 
 li:first-child {
@@ -192,18 +194,15 @@ nav {
 }
 
 article {
-background-color: red;
-width: 900px;
+width: 825px;
 float: left;
 }
 
 aside {
-background-color: green;
 width: 300px;
 float: right;
 }
 
 footer {
-background-color: yellow;
 clear: both;
 }

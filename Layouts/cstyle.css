@@ -1,6 +1,7 @@
 *{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 
@@ -25,6 +26,7 @@ article {
 .price {
   font-size: 30px;
   margin: 0;
+  float: left;
 }
 
 .freeship {
@@ -32,6 +34,8 @@ article {
   text-transform: uppercase;
   font-size: 14px;
   margin-bottom: 15px;
+  float: right;
+  margin-top: 8px;
 }
 
 a:hover {
@@ -70,6 +74,7 @@ h3 {
 .product {
   width: 825px;
   margin: 50px auto;
+  /* height: 350px; */
 }
 
 h4 {
@@ -78,6 +83,8 @@ h4 {
 
 .ready {
   padding: 10px 0;
+  clear: both;
+  /* margin-bottom: 10px; */
 }
 
 .info{
@@ -134,4 +141,21 @@ h3:first-child::before {
   background-color: brown;
   height: 22px;
   width: 20px;
+}
+
+.middle {
+  width: 243px;
+  float: left;
+  margin-right: 30px;
+  padding-top: 20px;
+}
+.right{
+  width: 243px;
+  float: right;
+
+}
+
+.prodimage {
+  float: left;
+  margin-right: 40px;
 }
