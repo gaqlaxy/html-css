@@ -26,16 +26,16 @@ article {
 .price {
   font-size: 30px;
   margin: 0;
-  float: left;
+  /* float: left; */
 }
 
 .freeship {
   color: #777;
   text-transform: uppercase;
   font-size: 14px;
-  margin-bottom: 15px;
-  float: right;
-  margin-top: 8px;
+  /* margin-bottom: 15px; */
+  /* float: right; */
+  /* margin-top: 8px; */
 }
 
 a:hover {
@@ -83,7 +83,7 @@ h4 {
 
 .ready {
   padding: 10px 0;
-  clear: both;
+  /* clear: both; */
   /* margin-bottom: 10px; */
 }
 
@@ -112,8 +112,8 @@ h3:first-child::before {
   background-color: black;
   height: 22px;
   width: 20px;
-  display: inline-block;
-  margin-right: 10px;
+  /* display: inline-block; */
+  /* margin-right: 10px; */
 }
 
 .color-blue {
@@ -158,4 +158,18 @@ h3:first-child::before {
 .prodimage {
   float: left;
   margin-right: 40px;
+}
+
+
+/* flex */
+.prodprice{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+
+}
+.product-colors{
+  display: flex;
+  gap: 10px;
 }
