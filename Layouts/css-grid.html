@@ -14,7 +14,7 @@
       }
       .el--3 {
         background-color: green;
-        height: 150px;
+        /* height: 150px; */
       }
       .el--4 {
         background-color: goldenrod;
@@ -36,13 +36,21 @@
         /* STARTER */
         font-family: sans-serif;
         background-color: #ddd;
-        font-size: 40px;
+        font-size: 30px;
         margin: 40px;
+        height: 500px;
 
         /* CSS GRID */
+        display: grid;
+        /* grid-template-columns: 200px 180px 1fr 100px; */
+        /* grid-template-rows: 100px 150px; */
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 1fr auto;
+        gap: 20px;
       }
 
       .container--2 {
+        display: none;
         /* STARTER */
         font-family: sans-serif;
         background-color: black;
