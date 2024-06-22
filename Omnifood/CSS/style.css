@@ -24,7 +24,8 @@ body {
 
 .grid {
   display: grid;
-  gap: 9.6rem;
+  row-gap: 9.6rem;
+  column-gap: 6.4rem;
 }
 
 .grid--2-cols {
@@ -33,7 +34,9 @@ body {
 .grid--3-cols {
   grid-template-columns: repeat(3, 1fr);
 }
-
+.grid--center-v {
+  align-items: center;
+}
 .logo {
   height: 2.4rem;
 }
@@ -189,19 +192,24 @@ body {
   padding: 9.6rem 0;
 }
 
-.step-img{
-  width: 50%;
+.step-img {
+  width: 35%;
 }
-.heading-secondary{
+.step-number {
+  font-size: 8.6rem;
+  font-weight: 600;
+  color: #ddd;
+  margin-bottom: 1.2rem;
+}
+.heading-secondary {
   font-weight: 700;
   color: #333;
   letter-spacing: -0.5px;
   font-size: 4.4rem;
   line-height: 1.2;
   margin-bottom: 9.6rem;
-  
 }
-.subheading{
+.subheading {
   display: block;
   font-size: 1.6rem;
   font-weight: 500;
@@ -209,4 +217,45 @@ body {
   text-transform: uppercase;
   margin-bottom: 1.6rem;
   letter-spacing: 0.75px;
+}
+.heading-tertiary {
+  font-weight: 700;
+  color: #333;
+  letter-spacing: -0.5px;
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 3.2rem;
+}
+.step-description {
+  font-size: 1.8rem;
+  line-height: 1.8;
+}
+.step-img-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-img-box::before,
+.step-img-box::after {
+  content: "";
+  display: block;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.step-img-box::after {
+  width: 45%;
+  padding-bottom: 45%;
+  background-color: #fae5d3;
+  z-index: -1;
+}
+.step-img-box::before {
+  width: 60%;
+  padding-bottom: 60%;
+  background-color: #fdf2e9;
+  z-index: -1;
 }
