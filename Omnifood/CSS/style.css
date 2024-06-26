@@ -695,3 +695,8 @@ margin-bottom: 1.2rem;
 .grid--footer{
   grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr;
 }
+.address-col{
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+}
