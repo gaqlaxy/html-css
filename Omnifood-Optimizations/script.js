@@ -27,7 +27,53 @@ btnNav.addEventListener("click", function(){
   headerNav.classList.toggle("nav-open");
 })
 
+//Smooth Scrolling
 
+let allLinks = document.querySelectorAll("a:link");
+
+allLinks.forEach(function(link){
+  link.addEventListener("click", function(e){
+    e.preventDefault();
+    let href = link.getAttribute("href");
+
+    // scrolling back to top
+
+    if(href ==="#") 
+      window.scrollTo({
+      top: 0,
+      behavior:"smooth"
+    });
+    if(href !=="#" && href.startsWith("#")){
+      let sectionEl = document.querySelector(href);
+      sectionEl.scrollIntoView({behavior: "smooth"});
+    }
+    // CLosing mobile nav 
+    if(link.classList.contains("main-nav-link"))
+  headerNav.classList.toggle("nav-open");
+  });
+})
+
+// Sticky Navigation
+
+let sectionHeroEl = document.querySelector(".section-hero");
+let obs = new IntersectionObserver(function(entries){
+  let ent = entries[0]; 
+  console.log(ent); 
+  if(ent.isIntersecting === false){
+
+    document.body.classList.add("sticky");
+  }
+  if(ent.isIntersecting === true){
+
+    document.body.classList.remove("sticky");
+  }
+}, 
+{
+  root: null,
+  threshold: 0,
+  rootMargin: "-80px"
+})
+obs.observe(sectionHeroEl);
 
 
 
