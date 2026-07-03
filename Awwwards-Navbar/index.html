@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nova — Awwwards Style Navbar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Progress bar -->
+  <div class="scroll-progress"><span></span></div>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner">
+
+      <nav class="nav-links nav-links--left">
+        <a href="#about" class="nav-link"><span class="nav-link__row"><span>About</span><span>About</span></span></a>
+        <a href="#services" class="nav-link"><span class="nav-link__row"><span>Services</span><span>Services</span></span></a>
+        <a href="#works" class="nav-link"><span class="nav-link__row"><span>Works</span><span>Works</span></span></a>
+      </nav>
+
+      <div class="nav-logo">
+        <a href="#home" aria-label="Nova — home">
+          <svg class="nav-logo__mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2L36 20L20 38L4 20L20 2Z" stroke="currentColor" stroke-width="2"/>
+            <circle cx="20" cy="20" r="5" fill="currentColor"/>
+          </svg>
+          <span class="nav-logo__text">NOVA</span>
+        </a>
+      </div>
+
+      <div class="nav-right">
+        <a href="#contact" class="nav-cta">
+          <span class="nav-cta__circle" aria-hidden="true"></span>
+          <span class="nav-cta__label">
+            <span class="nav-cta__label-text">Let's Talk</span>
+            <span class="nav-cta__label-text" aria-hidden="true">Let's Talk</span>
+          </span>
+        </a>
+
+        <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- FULLSCREEN MOBILE / MENU OVERLAY -->
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-overlay__bg"></div>
+    <div class="menu-overlay__inner">
+      <nav class="menu-overlay__links">
+        <a href="#about" class="menu-overlay__link"><span>01</span>About</a>
+        <a href="#services" class="menu-overlay__link"><span>02</span>Services</a>
+        <a href="#works" class="menu-overlay__link"><span>03</span>Works</a>
+        <a href="#contact" class="menu-overlay__link"><span>04</span>Let's Talk</a>
+      </nav>
+      <div class="menu-overlay__footer">
+        <div class="menu-overlay__socials">
+          <a href="#">Instagram</a>
+          <a href="#">Twitter</a>
+          <a href="#">LinkedIn</a>
+        </div>
+        <div class="menu-overlay__contact">
+          <p>hello@nova.studio</p>
+          <p>+91 98765 43210</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEMO PAGE CONTENT -->
+  <main>
+    <section class="section section--hero" id="home">
+      <p class="section__eyebrow">Creative Direction &amp; Digital Design</p>
+      <h1 class="section__title">
+        We craft digital<br />
+        experiences that <em>move</em>.
+      </h1>
+      <p class="section__scroll-hint">Scroll to see the navbar react ↓</p>
+    </section>
+
+    <section class="section" id="about">
+      <p class="section__eyebrow">01 — About</p>
+      <h2 class="section__title">A studio obsessed<br/>with detail.</h2>
+    </section>
+
+    <section class="section" id="services">
+      <p class="section__eyebrow">02 — Services</p>
+      <h2 class="section__title">Brand. Motion.<br/>Web. Repeat.</h2>
+    </section>
+
+    <section class="section" id="works">
+      <p class="section__eyebrow">03 — Works</p>
+      <h2 class="section__title">Selected projects,<br/>chosen with care.</h2>
+    </section>
+
+    <section class="section" id="contact">
+      <p class="section__eyebrow">04 — Contact</p>
+      <h2 class="section__title">Let's build something<br/>unforgettable.</h2>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
