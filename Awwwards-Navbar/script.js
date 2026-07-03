@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     menuTl = gsap.timeline();
     menuTl
-      .to(overlayBg, { clipPath: 'circle(150% at calc(100% - 48px) 46px)', duration: 0.9, ease: 'power4.inOut' })
+      .to(overlayBg, { clipPath: 'circle(150% at 50% 46px)', duration: 0.9, ease: 'power4.inOut' })
       .to(overlayInner, { opacity: 1, duration: 0.3 }, '-=0.4')
       .from(overlayLinks, { y: 60, opacity: 0, stagger: 0.08, duration: 0.7, ease: 'power3.out' }, '-=0.3')
       .from('.menu-overlay__footer', { y: 20, opacity: 0, duration: 0.5 }, '-=0.4');
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
       opacity: 0, duration: 0.25,
       onComplete: () => {
         gsap.to(overlayBg, {
-          clipPath: 'circle(2% at calc(100% - 48px) 46px)',
+          clipPath: 'circle(2% at 50% 46px)',
           duration: 0.7, ease: 'power3.inOut',
           onComplete: () => overlay.classList.remove('is-open')
         });

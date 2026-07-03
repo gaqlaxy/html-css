@@ -18,12 +18,6 @@
   <header class="navbar" id="navbar">
     <div class="navbar__inner">
 
-      <nav class="nav-links nav-links--left">
-        <a href="#about" class="nav-link"><span class="nav-link__row"><span>About</span><span>About</span></span></a>
-        <a href="#services" class="nav-link"><span class="nav-link__row"><span>Services</span><span>Services</span></span></a>
-        <a href="#works" class="nav-link"><span class="nav-link__row"><span>Works</span><span>Works</span></span></a>
-      </nav>
-
       <div class="nav-logo">
         <a href="#home" aria-label="Nova — home">
           <svg class="nav-logo__mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,6 +28,19 @@
         </a>
       </div>
 
+      <div class="nav-center">
+        <nav class="nav-links">
+          <a href="#about" class="nav-link"><span class="nav-link__row"><span>About</span><span>About</span></span></a>
+          <a href="#services" class="nav-link"><span class="nav-link__row"><span>Services</span><span>Services</span></span></a>
+          <a href="#works" class="nav-link"><span class="nav-link__row"><span>Works</span><span>Works</span></span></a>
+        </nav>
+
+        <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
       <div class="nav-right">
         <a href="#contact" class="nav-cta">
           <span class="nav-cta__circle" aria-hidden="true"></span>
@@ -42,11 +49,6 @@
             <span class="nav-cta__label-text" aria-hidden="true">Let's Talk</span>
           </span>
         </a>
-
-        <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-        </button>
       </div>
 
     </div>

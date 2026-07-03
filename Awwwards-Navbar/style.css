@@ -84,7 +84,16 @@ button { font-family: inherit; background: none; border: none; cursor: pointer; 
   align-items: center;
 }
 
-/* ---------- text-links (left) ---------- */
+/* ---------- center: nav links crossfade into the menu burger ---------- */
+.nav-center {
+  grid-column: 2;
+  justify-self: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -92,9 +101,9 @@ button { font-family: inherit; background: none; border: none; cursor: pointer; 
   transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
 }
 
-.navbar.is-compact .nav-links--left {
+.navbar.is-compact .nav-links {
   opacity: 0;
-  transform: translateY(-10px);
+  transform: translateY(-10px) scale(0.94);
   pointer-events: none;
 }
 
@@ -121,10 +130,10 @@ button { font-family: inherit; background: none; border: none; cursor: pointer; 
 
 .nav-link:hover .nav-link__row { transform: translateY(-50%); }
 
-/* ---------- logo (center) ---------- */
+/* ---------- logo (left) ---------- */
 .nav-logo {
-  grid-column: 2;
-  justify-self: center;
+  grid-column: 1;
+  justify-self: start;
 }
 
 .nav-logo a {
@@ -156,13 +165,12 @@ button { font-family: inherit; background: none; border: none; cursor: pointer; 
 .navbar.is-compact .nav-logo__mark { width: 21px; height: 21px; }
 .navbar.is-compact .nav-logo__text { font-size: 0.95rem; }
 
-/* ---------- right side ---------- */
+/* ---------- right side (CTA) ---------- */
 .nav-right {
   grid-column: 3;
   justify-self: end;
   display: flex;
   align-items: center;
-  gap: 20px;
 }
 
 /* CTA magnetic pill button */
@@ -220,8 +228,11 @@ button { font-family: inherit; background: none; border: none; cursor: pointer; 
 .nav-cta:hover .nav-cta__label-text:first-child { transform: translateY(-100%); }
 .nav-cta:hover .nav-cta__label-text:last-child { transform: translateY(-100%); }
 
-/* ---------- burger (menu trigger) ---------- */
+/* ---------- burger (menu trigger, sits centered over the links) ---------- */
 .nav-burger {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -229,14 +240,14 @@ button { font-family: inherit; background: none; border: none; cursor: pointer; 
   width: 34px;
   height: 34px;
   opacity: 0;
-  transform: scale(0.6);
+  transform: translate(-50%, -50%) scale(0.6);
   pointer-events: none;
   transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
 }
 
 .navbar.is-compact .nav-burger {
   opacity: 1;
-  transform: scale(1);
+  transform: translate(-50%, -50%) scale(1);
   pointer-events: auto;
 }
 
@@ -268,7 +279,7 @@ button { font-family: inherit; background: none; border: none; cursor: pointer; 
   position: absolute;
   inset: 0;
   background: #101012;
-  clip-path: circle(2% at calc(100% - 48px) 46px);
+  clip-path: circle(2% at 50% 46px);
 }
 
 .menu-overlay__inner {
@@ -378,16 +389,14 @@ main { position: relative; z-index: 1; }
    RESPONSIVE
 ============================================ */
 @media (max-width: 860px) {
-  .nav-links--left { display: none; }
+  .nav-links { display: none; }
   .nav-burger {
     opacity: 1;
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
     pointer-events: auto;
   }
   .nav-cta {
     padding: 0.6em 1.2em;
     font-size: 0.8rem;
   }
-  .nav-logo { grid-column: 1; justify-self: start; }
-  .nav-right { grid-column: 3; gap: 12px; }
 }
