@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .from(navbar, { yPercent: -100, duration: 0.9, ease: 'power4.out' })
     .from('.nav-link', { y: 24, opacity: 0, stagger: 0.08, duration: 0.7 }, '-=0.5')
     .from('.nav-logo', { scale: 0.6, opacity: 0, duration: 0.6 }, '-=0.5')
-    .from('.nav-cta, .nav-burger', { y: -16, opacity: 0, duration: 0.6 }, '-=0.4')
+    .from('.nav-cta', { y: -16, opacity: 0, duration: 0.6 }, '-=0.4')
     .from('.section--hero .section__eyebrow, .section--hero .section__title, .section--hero .section__scroll-hint', {
       y: 40, opacity: 0, stagger: 0.12, duration: 0.9
     }, '-=0.3');
@@ -47,9 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==============================================
-     3. SCROLL BEHAVIOR: hide/show + solid bg + progress
+     3. SCROLL BEHAVIOR: shrink to compact bar + progress
   ============================================== */
-  let lastY = window.scrollY;
+  const COMPACT_THRESHOLD = 60;
   let ticking = false;
 
   const onScroll = () => {
@@ -58,20 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const progress = docHeight > 0 ? (y / docHeight) * 100 : 0;
     gsap.set(progressBar, { width: `${progress}%` });
 
-    navbar.classList.toggle('is-solid', y > 40);
+    const scrolled = y > COMPACT_THRESHOLD;
+    navbar.classList.toggle('is-solid', scrolled);
+    navbar.classList.toggle('is-compact', scrolled);
 
-    if (!overlay.classList.contains('is-open')) {
-      const shouldHide = y > lastY && y > var_navH();
-      gsap.to(navbar, { yPercent: shouldHide ? -100 : 0, duration: 0.5, ease: 'power3.out', overwrite: 'auto' });
-    }
-
-    lastY = y;
     ticking = false;
   };
-
-  function var_navH() {
-    return parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 88;
-  }
 
   window.addEventListener('scroll', () => {
     if (!ticking) {
@@ -79,6 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
       ticking = true;
     }
   });
+
+  onScroll();
 
   /* ==============================================
      4. FULLSCREEN MENU OVERLAY
@@ -91,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
     burger.classList.add('is-open');
     burger.setAttribute('aria-expanded', 'true');
     overlay.classList.add('is-open');
-    gsap.to(navbar, { yPercent: 0, duration: 0.4, ease: 'power3.out', overwrite: 'auto' });
 
     menuTl = gsap.timeline();
     menuTl
