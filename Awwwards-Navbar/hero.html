@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nova — Hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="hero.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="topbar__logo" href="#">NOVA</a>
+    <button class="topbar__menu" type="button">Menu</button>
+  </header>
+
+  <!-- HERO — pinned while the showreel scales to fullscreen -->
+  <section class="hero" id="hero">
+
+    <div class="hero__headline" id="heroHeadline">
+      <h1 class="hero__title">
+        <span class="hero__title-line"><span class="hero__title-inner">We make</span></span>
+        <span class="hero__title-line"><span class="hero__title-inner">brands</span></span>
+        <span class="hero__title-line"><span class="hero__title-inner">move<sup>®</sup></span></span>
+      </h1>
+      <p class="hero__sub">Creative studio for design-led companies.<br />Chennai / worldwide.</p>
+    </div>
+
+    <p class="hero__hint" id="heroHint">Scroll</p>
+
+    <!-- tiny showreel, bottom right -->
+    <figure class="hero__reel" id="heroReel">
+      <video
+        class="hero__reel-video"
+        src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+        autoplay muted loop playsinline
+      ></video>
+      <figcaption class="hero__reel-tag" id="heroReelTag">
+        <span class="hero__reel-dot" aria-hidden="true"></span>
+        Showreel — 2026
+      </figcaption>
+    </figure>
+
+  </section>
+
+  <!-- phase 2 placeholder -->
+  <section class="after">
+    <p class="after__eyebrow">01 — Next</p>
+    <h2 class="after__title">Phase 2 goes here.</h2>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="hero.js"></script>
+</body>
+</html>

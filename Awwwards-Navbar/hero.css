@@ -1,0 +1,211 @@
+/* ============================================
+   BASE
+============================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0b0b0c;
+  --ink: #f3f1ea;
+  --ink-dim: rgba(243, 241, 234, 0.5);
+  --accent: #c6ff3d;
+  --line: rgba(243, 241, 234, 0.14);
+  --pad: clamp(20px, 4.5vw, 64px);
+  --ease: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+
+::selection { background: var(--accent); color: #0b0b0c; }
+
+/* ============================================
+   TOP BAR (minimal, static)
+============================================ */
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px var(--pad);
+  mix-blend-mode: difference; /* stays legible when the video goes fullscreen */
+}
+
+.topbar__logo {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  font-size: 1.05rem;
+}
+
+.topbar__menu {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* ============================================
+   HERO
+============================================ */
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero__headline {
+  position: absolute;
+  left: var(--pad);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.hero__title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 650;
+  font-size: clamp(3.2rem, 11vw, 10rem);
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
+.hero__title-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.hero__title-inner {
+  display: block;
+  transform: translateY(110%);
+}
+
+.hero__title sup {
+  font-size: 0.22em;
+  font-weight: 500;
+  vertical-align: 2.2em;
+  letter-spacing: 0;
+  color: var(--accent);
+}
+
+.hero__sub {
+  margin-top: clamp(18px, 3vh, 32px);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--ink-dim);
+  opacity: 0;
+}
+
+/* visible by default — the scrubbed timeline captures its start value at
+   init, so an intro fade-in here would lock it at 0 */
+.hero__hint {
+  position: absolute;
+  left: var(--pad);
+  bottom: 28px;
+  z-index: 2;
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+/* ---------- tiny showreel, bottom right ---------- */
+.hero__reel {
+  position: absolute;
+  right: var(--pad);
+  bottom: var(--pad);
+  z-index: 3;
+  width: min(340px, 42vw);
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  overflow: hidden;
+  /* fallback while the video buffers (or is blocked) */
+  background:
+    radial-gradient(120% 160% at 20% 20%, #2a2d1a 0%, #131408 55%, #0b0b0c 100%);
+  will-change: width, height;
+}
+
+.hero__reel-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.18);
+  will-change: transform;
+}
+
+.hero__reel-tag {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+}
+
+.hero__reel-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: reelBlink 1.6s steps(1) infinite;
+}
+
+@keyframes reelBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+/* ============================================
+   AFTER (phase 2 placeholder)
+============================================ */
+.after {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 var(--pad);
+  border-top: 1px solid var(--line);
+}
+
+.after__eyebrow {
+  color: var(--accent);
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.after__title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 600;
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+@media (max-width: 640px) {
+  .hero__reel {
+    width: min(300px, 62vw);
+  }
+}
