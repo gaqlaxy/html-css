@@ -54,34 +54,44 @@ button { font-family: inherit; background: none; border: none; cursor: pointer; 
   top: 0; left: 0;
   width: 100%;
   z-index: 1000;
-  padding: 26px clamp(20px, 4vw, 56px);
   display: flex;
-  align-items: center;
-  background: linear-gradient(to bottom, rgba(11,11,12,0.85), rgba(11,11,12,0));
-  transition: padding 0.5s var(--ease), background 0.5s var(--ease), border-color 0.5s var(--ease), backdrop-filter 0.5s var(--ease);
-  border-bottom: 1px solid transparent;
+  justify-content: center;
+  padding-top: 0;
+  transition: padding-top 0.6s var(--ease);
 }
 
-.navbar.is-solid {
-  background: rgba(11, 11, 12, 0.72);
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
-  border-bottom: 1px solid var(--line);
-}
-
-/* shrunk state: only logo + burger + CTA remain */
+/* shrunk state: bar narrows into a floating centered pill */
 .navbar.is-compact {
   padding-top: 14px;
-  padding-bottom: 14px;
 }
 
 .navbar__inner {
   width: 100%;
   max-width: 1440px;
-  margin: 0 auto;
+  padding: 26px clamp(20px, 4vw, 56px);
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
+  border-radius: 0;
+  border: 1px solid transparent;
+  background: transparent;
+  transition: width 0.6s var(--ease), max-width 0.6s var(--ease), padding 0.5s var(--ease),
+              background 0.5s var(--ease), border-color 0.5s var(--ease), border-radius 0.6s var(--ease),
+              backdrop-filter 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+
+.navbar.is-solid .navbar__inner {
+  background: rgba(11, 11, 12, 0.72);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-color: var(--line);
+}
+
+.navbar.is-compact .navbar__inner {
+  width: clamp(320px, 50%, 720px);
+  padding: 12px 22px;
+  border-radius: 999px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
 }
 
 /* ---------- center: nav links crossfade into the menu burger ---------- */
@@ -89,21 +99,24 @@ button { font-family: inherit; background: none; border: none; cursor: pointer; 
   grid-column: 2;
   justify-self: center;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 34px;
 }
 
 .nav-links {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   gap: clamp(20px, 2.6vw, 44px);
+  white-space: nowrap;
   transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
 }
 
 .navbar.is-compact .nav-links {
   opacity: 0;
-  transform: translateY(-10px) scale(0.94);
+  transform: translate(-50%, -50%) translateY(-10px) scale(0.94);
   pointer-events: none;
 }
 
