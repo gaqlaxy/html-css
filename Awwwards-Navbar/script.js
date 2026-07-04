@@ -79,6 +79,12 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ==============================================
      1. ENTRANCE ANIMATION
   ============================================== */
+  /* y:0 clears the pixel offset GSAP parses out of the CSS translateY(110%)
+     fallback — otherwise it stacks with yPercent and never fully unwinds */
+  gsap.set('.hero-line__inner', { y: 0, yPercent: 110 });
+  gsap.set('.hero__badge', { y: -12 });
+  gsap.set('.hero__meta', { y: 20 });
+
   const introTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
   introTl
@@ -86,10 +92,33 @@ document.addEventListener('DOMContentLoaded', () => {
     .from('.nav-link', { y: 24, opacity: 0, stagger: 0.08, duration: 0.7 }, '-=0.5')
     .from('.nav-logo', { scale: 0.6, opacity: 0, duration: 0.6 }, '-=0.5')
     .to(ctaWrap, { y: '+=16', opacity: 1, duration: 0.6 }, '-=0.4')
-    .from('.section--hero .section__eyebrow, .section--hero .section__title, .section--hero .section__scroll-hint', {
-      y: 40, opacity: 0, stagger: 0.12, duration: 0.9
-    }, '-=0.3')
+    .to('.hero-line__inner', { yPercent: 0, duration: 1.1, stagger: 0.12, ease: 'power4.out' }, '-=0.35')
+    .to('.hero__badge', { opacity: 1, y: 0, duration: 0.6 }, '-=0.9')
+    .to('.hero__meta', { opacity: 1, y: 0, duration: 0.7 }, '-=0.55')
+    .to('.hero__marquee', { opacity: 1, duration: 0.8 }, '-=0.5')
     .call(() => placeFloating());
+
+  /* ==============================================
+     1b. HERO AMBIENT MOTION
+  ============================================== */
+  /* infinite marquee — track holds two identical halves, so -50% loops seamlessly */
+  gsap.to('#marqueeTrack', { xPercent: -50, duration: 24, ease: 'none', repeat: -1 });
+
+  /* rotating "scroll to explore" ring */
+  gsap.to('.hero__rot-text', { rotation: 360, duration: 14, ease: 'none', repeat: -1, transformOrigin: '50% 50%' });
+
+  /* cursor-following glow (page coords — the hero clips it once you scroll past) */
+  const heroGlow = document.getElementById('heroGlow');
+  gsap.set(heroGlow, { xPercent: -50, yPercent: -50, x: window.innerWidth * 0.55, y: window.innerHeight * 0.4 });
+
+  if (window.matchMedia('(hover: hover)').matches) {
+    const glowX = gsap.quickTo(heroGlow, 'x', { duration: 1.1, ease: 'power3.out' });
+    const glowY = gsap.quickTo(heroGlow, 'y', { duration: 1.1, ease: 'power3.out' });
+    window.addEventListener('mousemove', (e) => {
+      glowX(e.clientX);
+      glowY(e.clientY + window.scrollY);
+    });
+  }
 
   /* ==============================================
      2. MAGNETIC CTA BUTTON (independent of the placement transform above)
@@ -116,6 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
      3. SCROLL BEHAVIOR: shrink to compact bar + progress
   ============================================== */
   const COMPACT_THRESHOLD = 60;
+  const heroContent = document.getElementById('heroContent');
   let ticking = false;
 
   const onScroll = () => {
@@ -126,6 +156,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navbar.classList.toggle('is-solid', y > COMPACT_THRESHOLD);
     setCompact(y > COMPACT_THRESHOLD);
+
+    /* hero drifts down slower than the scroll and fades — cheap parallax */
+    if (y < window.innerHeight * 1.2) {
+      gsap.set(heroContent, {
+        y: y * 0.28,
+        opacity: 1 - Math.min(y / (window.innerHeight * 0.85), 1)
+      });
+    }
 
     ticking = false;
   };

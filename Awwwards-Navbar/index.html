@@ -100,13 +100,60 @@
 
   <!-- DEMO PAGE CONTENT -->
   <main>
-    <section class="section section--hero" id="home">
-      <p class="section__eyebrow">Creative Direction &amp; Digital Design</p>
-      <h1 class="section__title">
-        We craft digital<br />
-        experiences that <em>move</em>.
-      </h1>
-      <p class="section__scroll-hint">Scroll to see the navbar react ↓</p>
+    <section class="hero" id="home">
+      <div class="hero__glow hero__glow--static" aria-hidden="true"></div>
+      <div class="hero__glow" id="heroGlow" aria-hidden="true"></div>
+
+      <div class="hero__content" id="heroContent">
+        <p class="hero__badge">
+          <span class="hero__badge-dot" aria-hidden="true"></span>
+          Available for select projects — 2026
+        </p>
+
+        <h1 class="hero__title">
+          <span class="hero-line"><span class="hero-line__inner">We craft</span></span>
+          <span class="hero-line"><span class="hero-line__inner hero-line__inner--stroke">digital experiences</span></span>
+          <span class="hero-line"><span class="hero-line__inner">that <em>move</em>.</span></span>
+        </h1>
+
+        <div class="hero__meta">
+          <p class="hero__meta-text">Independent creative studio<br />crafting brands &amp; websites</p>
+          <div class="hero__rot" aria-hidden="true">
+            <svg class="hero__rot-text" viewBox="0 0 100 100">
+              <defs>
+                <path id="rotPath" d="M50,50 m-36,0 a36,36 0 1,1 72,0 a36,36 0 1,1 -72,0" />
+              </defs>
+              <text>
+                <textPath href="#rotPath" textLength="226">SCROLL TO EXPLORE — SCROLL TO EXPLORE — </textPath>
+              </text>
+            </svg>
+            <svg class="hero__rot-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 6L32 20L20 34L8 20L20 6Z" stroke="currentColor" stroke-width="2.5"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__marquee" aria-hidden="true">
+        <div class="hero__marquee-track" id="marqueeTrack">
+          <span>Brand</span><span class="dia">◆</span>
+          <span>Motion</span><span class="dia">◆</span>
+          <span>Web</span><span class="dia">◆</span>
+          <span>Identity</span><span class="dia">◆</span>
+          <span>Strategy</span><span class="dia">◆</span>
+          <span>Content</span><span class="dia">◆</span>
+          <span>Design</span><span class="dia">◆</span>
+          <span>Code</span><span class="dia">◆</span>
+          <span>Brand</span><span class="dia">◆</span>
+          <span>Motion</span><span class="dia">◆</span>
+          <span>Web</span><span class="dia">◆</span>
+          <span>Identity</span><span class="dia">◆</span>
+          <span>Strategy</span><span class="dia">◆</span>
+          <span>Content</span><span class="dia">◆</span>
+          <span>Design</span><span class="dia">◆</span>
+          <span>Code</span><span class="dia">◆</span>
+        </div>
+      </div>
     </section>
 
     <section class="section" id="about">
