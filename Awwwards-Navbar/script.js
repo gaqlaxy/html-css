@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const backdrop   = document.getElementById('menuBackdrop');
   const panel      = document.getElementById('menuPanel');
   const panelLinks = panel.querySelectorAll('.menu-panel__link');
+  const panelLinkTexts = panel.querySelectorAll('.menu-panel__link-text');
   const progressBar = document.querySelector('.scroll-progress span');
 
   /* ==============================================
@@ -152,6 +153,59 @@ document.addEventListener('DOMContentLoaded', () => {
   ============================================== */
   let menuOpen = false;
 
+  /* -------- text-scramble decode effect on the link labels -------- */
+  const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let scrambleGen = 0;
+
+  panelLinkTexts.forEach(el => { el.dataset.text = el.textContent; });
+
+  function scrambleReveal(el, finalText, delayMs, duration = 550) {
+    const gen = scrambleGen;
+    const len = finalText.length;
+
+    setTimeout(() => {
+      const start = performance.now();
+
+      const frame = (now) => {
+        if (gen !== scrambleGen) return; // superseded by a newer open/close cycle
+        const progress = Math.min((now - start) / duration, 1);
+        const revealCount = Math.floor(progress * len);
+        let out = '';
+        for (let i = 0; i < len; i++) {
+          if (i < revealCount || finalText[i] === ' ') {
+            out += finalText[i];
+          } else {
+            out += SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+          }
+        }
+        el.textContent = out;
+        if (progress < 1) requestAnimationFrame(frame);
+      };
+      requestAnimationFrame(frame);
+    }, delayMs);
+  }
+
+  /* -------- subtle magnetic nudge per row -------- */
+  if (window.matchMedia('(hover: hover)').matches) {
+    panelLinks.forEach(link => {
+      const xTo = gsap.quickTo(link, 'x', { duration: 0.4, ease: 'power3.out' });
+      const yTo = gsap.quickTo(link, 'y', { duration: 0.4, ease: 'power3.out' });
+
+      link.addEventListener('mousemove', (e) => {
+        const rect = link.getBoundingClientRect();
+        const relX = e.clientX - rect.left - rect.width / 2;
+        const relY = e.clientY - rect.top - rect.height / 2;
+        xTo(relX * 0.12);
+        yTo(relY * 0.25);
+      });
+
+      link.addEventListener('mouseleave', () => {
+        xTo(0);
+        yTo(0);
+      });
+    });
+  }
+
   function positionPanel() {
     const rect = burger.getBoundingClientRect();
     const panelWidth = panel.offsetWidth || 280;
@@ -164,6 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function openMenu() {
     if (!isCompact) return;
     menuOpen = true;
+    scrambleGen++;
     burger.classList.add('is-open');
     burger.setAttribute('aria-expanded', 'true');
     burger.setAttribute('aria-label', 'Close menu');
@@ -176,10 +231,15 @@ document.addEventListener('DOMContentLoaded', () => {
         { opacity: 0, y: -12, scale: 0.96 },
         { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: 'power3.out' }, 0)
       .from(panelLinks, { y: 12, opacity: 0, stagger: 0.04, duration: 0.3, ease: 'power3.out' }, 0.15);
+
+    panelLinkTexts.forEach((el, i) => {
+      scrambleReveal(el, el.dataset.text, 150 + i * 60);
+    });
   }
 
   function closeMenu() {
     menuOpen = false;
+    scrambleGen++;
     burger.classList.remove('is-open');
     burger.setAttribute('aria-expanded', 'false');
     burger.setAttribute('aria-label', 'Open menu');
@@ -187,7 +247,10 @@ document.addEventListener('DOMContentLoaded', () => {
     gsap.to(backdrop, { opacity: 0, duration: 0.25 });
     gsap.to(panel, {
       opacity: 0, y: -12, scale: 0.96, duration: 0.25, ease: 'power2.in',
-      onComplete: () => overlay.classList.remove('is-open')
+      onComplete: () => {
+        overlay.classList.remove('is-open');
+        panelLinkTexts.forEach(el => { el.textContent = el.dataset.text; });
+      }
     });
   }
 

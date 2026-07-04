@@ -332,10 +332,15 @@ button { font-family: inherit; background: none; border: none; cursor: pointer; 
 }
 
 .menu-panel__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
   padding: 11px 12px;
   border-radius: 10px;
   font-size: 1rem;
   font-weight: 500;
+  font-variant-numeric: tabular-nums;
   color: var(--ink);
   transition: background 0.3s var(--ease), color 0.3s var(--ease);
 }
@@ -343,6 +348,25 @@ button { font-family: inherit; background: none; border: none; cursor: pointer; 
 .menu-panel__link:hover {
   background: rgba(255, 255, 255, 0.06);
   color: var(--accent);
+}
+
+.menu-panel__link-text {
+  font-variant-numeric: tabular-nums;
+  white-space: pre;
+}
+
+.menu-panel__link-arrow {
+  display: inline-flex;
+  flex-shrink: 0;
+  opacity: 0;
+  transform: translateX(-8px);
+  color: var(--accent);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.menu-panel__link:hover .menu-panel__link-arrow {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .menu-panel__footer {
