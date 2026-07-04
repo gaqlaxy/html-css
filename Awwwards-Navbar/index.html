@@ -28,52 +28,52 @@
         </a>
       </div>
 
-      <div class="nav-center">
+      <div class="nav-center" id="navCenter">
         <nav class="nav-links">
           <a href="#about" class="nav-link"><span class="nav-link__row"><span>About</span><span>About</span></span></a>
           <a href="#services" class="nav-link"><span class="nav-link__row"><span>Services</span><span>Services</span></span></a>
           <a href="#works" class="nav-link"><span class="nav-link__row"><span>Works</span><span>Works</span></span></a>
         </nav>
-
-        <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-        </button>
       </div>
 
-      <div class="nav-right">
-        <a href="#contact" class="nav-cta">
-          <span class="nav-cta__circle" aria-hidden="true"></span>
-          <span class="nav-cta__label">
-            <span class="nav-cta__label-text">Let's Talk</span>
-            <span class="nav-cta__label-text" aria-hidden="true">Let's Talk</span>
-          </span>
-        </a>
-      </div>
+      <div class="nav-right" id="navRight"></div>
 
     </div>
   </header>
 
-  <!-- FULLSCREEN MOBILE / MENU OVERLAY -->
+  <!-- CTA and Menu button float independently so they can travel between
+       the center and right anchor points as the bar shrinks. The wrapper
+       handles that placement; the inner <a> keeps its own magnetic hover
+       offset so the two transforms don't fight each other. -->
+  <div class="nav-cta-wrap" id="navCtaWrap">
+    <a href="#contact" class="nav-cta" id="navCta">
+      <span class="nav-cta__circle" aria-hidden="true"></span>
+      <span class="nav-cta__label">
+        <span class="nav-cta__label-text">Let's Talk</span>
+        <span class="nav-cta__label-text" aria-hidden="true">Let's Talk</span>
+      </span>
+    </a>
+  </div>
+
+  <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
+    <span class="nav-burger__icon"><span></span><span></span></span>
+    <span class="nav-burger__label">Menu</span>
+  </button>
+
+  <!-- COMPACT DROPDOWN MENU -->
   <div class="menu-overlay" id="menuOverlay">
-    <div class="menu-overlay__bg"></div>
-    <div class="menu-overlay__inner">
-      <nav class="menu-overlay__links">
-        <a href="#about" class="menu-overlay__link"><span>01</span>About</a>
-        <a href="#services" class="menu-overlay__link"><span>02</span>Services</a>
-        <a href="#works" class="menu-overlay__link"><span>03</span>Works</a>
-        <a href="#contact" class="menu-overlay__link"><span>04</span>Let's Talk</a>
+    <div class="menu-overlay__backdrop" id="menuBackdrop"></div>
+    <div class="menu-overlay__panel" id="menuPanel">
+      <nav class="menu-panel__links">
+        <a href="#about" class="menu-panel__link">About</a>
+        <a href="#services" class="menu-panel__link">Services</a>
+        <a href="#works" class="menu-panel__link">Works</a>
+        <a href="#contact" class="menu-panel__link">Let's Talk</a>
       </nav>
-      <div class="menu-overlay__footer">
-        <div class="menu-overlay__socials">
-          <a href="#">Instagram</a>
-          <a href="#">Twitter</a>
-          <a href="#">LinkedIn</a>
-        </div>
-        <div class="menu-overlay__contact">
-          <p>hello@nova.studio</p>
-          <p>+91 98765 43210</p>
-        </div>
+      <div class="menu-panel__footer">
+        <a href="#" class="menu-panel__social">Instagram</a>
+        <a href="#" class="menu-panel__social">Twitter</a>
+        <a href="#" class="menu-panel__social">LinkedIn</a>
       </div>
     </div>
   </div>
