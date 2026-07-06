@@ -62,17 +62,23 @@ document.addEventListener('DOMContentLoaded', () => {
     .to('#svcStage', { autoAlpha: 1, duration: 0.2 }, 1.0)
     .to('#heroReel', { autoAlpha: 0, duration: 0.2 }, 1.0)
 
-  /* ---- phase 2: shatter, in 3 distinct stages so the 3D turn can't be
-     missed or misread as a video glitch:
+  /* ---- phase 2: shatter, in 2 stages:
 
        SEPARATE (1.2→1.6)  cards scale down, spread apart and tilt on the
                            flat z-axis — rotationY is untouched (still 0)
-       ROTATE   (1.6→2.2)  now that they're floating independently with
-                           clear gaps, each swings through a big rotationY
-                           turn — unambiguous as "3 objects turning", not
-                           the tiled/touching frame distorting
-       SETTLE   (2.2→2.7)  rotationY eases back to a small resting tilt as
-                           the shade lifts and labels/eyebrow fade in
+       ROTATE   (1.6→2.7)  now that they're floating independently with
+                           clear gaps, each turns in ONE continuous
+                           direction from flat to a clearly-rotated final
+                           resting angle — no overshoot-and-reverse. It
+                           used to swing out to a big peak (~80°) and then
+                           back past flat to a small residual tilt (-14°),
+                           which read as "it turns, then undoes itself and
+                           faces front again". Now it just turns until it
+                           gets there and stops turned.
+
+     The shade still pulses up then eases back down independently (a light
+     sweeping across as it turns) — that doesn't require the rotation
+     itself to reverse, so it stays even though rotationY no longer does.
 
      video stays fully visible (no opacity change) throughout. As before,
      only plain .to() calls touch rotationY — never from()/fromTo(), whose
@@ -84,17 +90,12 @@ document.addEventListener('DOMContentLoaded', () => {
     .to('.svc-card--2', { scale: 0.64, rotation: 5, xPercent: 0, yPercent: 6, borderRadius: 16, duration: 0.4 }, 1.2)
     .to('.svc-card--3', { scale: 0.64, rotation: -6, xPercent: 12, yPercent: -2, borderRadius: 16, duration: 0.4 }, 1.2)
 
-  /* ROTATE — big, slow, unmissable turn + darkening shade */
-    .to('.svc-card--1', { rotationY: 78, duration: 0.6 }, 1.6)
-    .to('.svc-card--2', { rotationY: -68, duration: 0.6 }, 1.6)
-    .to('.svc-card--3', { rotationY: 82, duration: 0.6 }, 1.6)
-    .to('.svc-card__shade', { opacity: 0.6, duration: 0.6 }, 1.6)
-
-  /* SETTLE */
-    .to('.svc-card--1', { rotationY: -14, duration: 0.5 }, 2.2)
-    .to('.svc-card--2', { rotationY: 10, duration: 0.5 }, 2.2)
-    .to('.svc-card--3', { rotationY: -12, duration: 0.5 }, 2.2)
-    .to('.svc-card__shade', { opacity: 0, duration: 0.5 }, 2.2)
+  /* ROTATE — one continuous turn per card, landing clearly rotated */
+    .to('.svc-card--1', { rotationY: 48, duration: 1.1 }, 1.6)
+    .to('.svc-card--2', { rotationY: -42, duration: 1.1 }, 1.6)
+    .to('.svc-card--3', { rotationY: 50, duration: 1.1 }, 1.6)
+    .to('.svc-card__shade', { opacity: 0.55, duration: 0.55 }, 1.6)
+    .to('.svc-card__shade', { opacity: 0.18, duration: 0.55 }, 2.15)
     .to('#svcEyebrow', { opacity: 1, duration: 0.4 }, 2.3)
     .to('.svc-card__label', { y: 0, opacity: 1, stagger: 0.08, duration: 0.5 }, 2.35);
 
