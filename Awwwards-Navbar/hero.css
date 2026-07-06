@@ -182,18 +182,27 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 /* ============================================
    PHASE 2 — SERVICE CARDS (shatter from the reel)
 ============================================ */
-/* the whole stage matches the reel's fullscreen band: 80vw wide, centered,
-   so there's a visible 10vw margin on each side for the shatter/rotation
-   to read clearly against the page background instead of hitting the edges */
 .svc-stage {
   position: absolute;
   inset: 0;
   z-index: 4;
   display: flex;
-  align-items: stretch;
+  align-items: center;
   justify-content: center;
   visibility: hidden;
   opacity: 0;
+}
+
+/* row: same shape as github.com/Hank-D-Tank/nextjs-split-flip's rowRef —
+   cards sit flush (gap:0) and the row itself scales down and gains a gap
+   during SEPARATE, instead of moving each card individually */
+.svc-row {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  will-change: transform, gap;
 }
 
 .svc-stage__eyebrow {
@@ -210,17 +219,17 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   pointer-events: none;
 }
 
-/* outer shell: STATIC perspective + layout (scale/spread/z-tilt). Never
-   gets rotationY itself — that's reserved for .svc-card__flip below, so
-   the 3D turn is never fighting the 2D layout transforms on one matrix. */
+/* outer shell: same footprint as the reference's Card.tsx — aspect-2/3,
+   width clamped between 220px and 400px (scaling with 32vw in between).
+   STATIC perspective + layout (row-level scale/gap does the "spread").
+   Never gets rotationY itself — that's reserved for .svc-card__flip
+   below, so the 3D turn never fights the layout on one matrix. */
 .svc-card {
   position: relative;
-  width: 26.667vw; /* 80vw / 3 — matches the reel's fullscreen band width */
-  height: 100vh;
+  aspect-ratio: 2 / 3;
+  width: clamp(220px, 32vw, 400px);
   flex-shrink: 0;
   perspective: 1400px;
-  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55);
-  will-change: transform;
 }
 
 /* the actual flip target: rotationY animates here, with preserve-3d so the
@@ -239,6 +248,17 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   overflow: hidden;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+}
+
+.svc-card__face--front video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .svc-card__face--back {
@@ -255,26 +275,6 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .svc-card--1 .svc-card__face { background: linear-gradient(150deg, #1a2410, #0b0b0c); }
 .svc-card--2 .svc-card__face { background: linear-gradient(150deg, #101a24, #0b0b0c); }
 .svc-card--3 .svc-card__face { background: linear-gradient(150deg, #241610, #0b0b0c); }
-
-/* each media is an 80vw-wide layer (matching the reel's fullscreen width,
-   not the viewport) offset so the 3 cards tile into one continuous frame */
-.svc-card__media {
-  position: absolute;
-  top: 0;
-  width: 80vw;
-  height: 100%;
-}
-.svc-card--1 .svc-card__media { left: 0; }
-.svc-card--2 .svc-card__media { left: -26.667vw; }
-.svc-card--3 .svc-card__media { left: -53.334vw; }
-
-.svc-card__media video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
 
 /* darkens the front face as the card turns away — sells the first ~90deg
    of the turn as a lighting change before the back face takes over */
@@ -340,6 +340,12 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 @media (max-width: 640px) {
   .hero__reel {
     width: min(300px, 62vw);
+  }
+  /* the reference's card min-width (220px) is a desktop-row assumption —
+     3 of them plus gaps overflow a phone viewport before any spread is
+     even applied. Shrink the floor so the row actually fits. */
+  .svc-card {
+    width: clamp(108px, 26vw, 160px);
   }
   .svc-card__face--back { padding: 16px; }
   .svc-card__desc { display: none; }

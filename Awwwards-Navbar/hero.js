@@ -21,6 +21,23 @@ document.addEventListener('DOMContentLoaded', () => {
      as the parent turns, instead of being flattened onto one plane */
   gsap.set('.svc-card__flip', { transformStyle: 'preserve-3d' });
 
+  /* split-then-uniform corner radii, same trick as the reference: while
+     the 3 cards sit flush (row gap: 0) their outer corners combine into
+     one continuous rounded strip; only once they separate does each
+     card get its own uniform radius (animated in the SEPARATE stage) */
+  document.querySelectorAll('.svc-card').forEach((card, i) => {
+    const stripRadii = ['16px 0 0 16px', '0px', '0 16px 16px 0'];
+    gsap.set(card.querySelectorAll('.svc-card__face'), { borderRadius: stripRadii[i] });
+  });
+
+  /* the reference's spread values (gap, flip x/y) were tuned for its
+     desktop card width; scale them down together with the CSS card-width
+     breakpoint so the row still fits a phone viewport */
+  const isNarrow = window.innerWidth < 640;
+  const spreadX = isNarrow ? 22 : 70;
+  const liftOuter = isNarrow ? 8 : 20;
+  const liftMid = isNarrow ? -6 : -18;
+
   /* ==============================================
      2. SCROLL — one pinned master timeline:
         phase 1 (0→1)  reel grows to fullscreen
@@ -30,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollTrigger: {
       trigger: '#hero',
       start: 'top top',
-      end: '+=420%',
+      end: '+=460%',
       scrub: 0.6,
       pin: true,
       anticipatePin: 1,
@@ -57,26 +74,23 @@ document.addEventListener('DOMContentLoaded', () => {
     .to('#svcStage', { autoAlpha: 1, duration: 0.2 }, 1.0)
     .to('#heroReel', { autoAlpha: 0, duration: 0.2 }, 1.0)
 
-  /* ---- phase 2: shatter, in 2 stages:
+  /* ---- phase 2: shatter, in 2 stages, positioning ported straight from
+     github.com/Hank-D-Tank/nextjs-split-flip's PinSection.tsx:
 
-       SEPARATE (1.2→1.6)  the outer .svc-card shells scale down, spread
-                           apart and tilt on the flat z-axis. rotationY is
-                           untouched here — that lives entirely on the
-                           inner .svc-card__flip, so the 2D layout move
-                           and the 3D turn are never fighting each other
-                           on the same transform matrix.
-       ROTATE   (1.6→2.7)  each .svc-card__flip does a genuine FULL FLIP —
+       SEPARATE (1.2→2.0)  the ROW (not each card) scales down 1 -> 0.76,
+                           then gains a 5rem gap — cards stay flush and
+                           centered otherwise. Corner radii go from the
+                           split strip to a uniform 16px per card as they
+                           separate. rotationY is untouched here.
+       ROTATE   (2.0→3.1)  each .svc-card__flip does a genuine FULL FLIP —
                            rotationY 0 -> 180deg, one continuous direction,
-                           no overshoot-and-reverse. Past 90deg the video
-                           front face (backface-hidden) disappears and the
-                           pre-rotated back face — the service label on its
-                           own solid background — rotates into view. This
-                           is the same front/back flip-card technique as
-                           github.com/Hank-D-Tank/nextjs-split-flip: static
-                           perspective shell + preserve-3d flipper + two
-                           backface-hidden faces, rather than a small tilt
-                           on a single flat plane (which read as barely
-                           moving at all).
+                           no overshoot-and-reverse — plus the small
+                           per-card rotationZ/x/y "flipParams" offset the
+                           reference applies to the flipper during the
+                           flip itself. Past 90deg the video front face
+                           (backface-hidden) disappears and the
+                           pre-rotated back face — the service label on
+                           its own solid background — rotates into view.
 
      video stays fully visible (no opacity change) until the flip itself
      naturally hides it past 90deg. As before, only plain .to() calls touch
@@ -84,18 +98,20 @@ document.addEventListener('DOMContentLoaded', () => {
      the "from" value backward into earlier scrub positions (bit us once
      already on this exact property). ---- */
 
-  /* SEPARATE — outer shell: layout only, no rotationY */
-    .to('.svc-card--1', { scale: 0.64, rotation: -8, xPercent: -12, yPercent: -4, duration: 0.4 }, 1.2)
-    .to('.svc-card--2', { scale: 0.64, rotation: 5, xPercent: 0, yPercent: 6, duration: 0.4 }, 1.2)
-    .to('.svc-card--3', { scale: 0.64, rotation: -6, xPercent: 12, yPercent: -2, duration: 0.4 }, 1.2)
-    .to('.svc-card__face', { borderRadius: 16, duration: 0.4 }, 1.2)
+  /* the reference's gap ("5rem") and flip x-offset (±70px) are fixed
+     pixel values tuned for its desktop card width — on a narrow phone
+     viewport they push the outer cards straight off-screen. Scale both
+     down together with the CSS card-width breakpoint above. */
+    .to('#svcRow', { scale: 0.76, duration: 0.4 }, 1.2)
+    .to('#svcRow', { gap: isNarrow ? '1rem' : '5rem', duration: 0.4 }, 1.6)
+    .to('.svc-card__face', { borderRadius: 16, duration: 0.4 }, 1.6)
 
   /* ROTATE — full 180deg flip per card, front video -> back label */
-    .to('.svc-card--1 .svc-card__flip', { rotationY: 180, duration: 1.1 }, 1.6)
-    .to('.svc-card--2 .svc-card__flip', { rotationY: -180, duration: 1.1 }, 1.6)
-    .to('.svc-card--3 .svc-card__flip', { rotationY: 180, duration: 1.1 }, 1.6)
-    .to('.svc-card__shade', { opacity: 0.6, duration: 0.5 }, 1.6)
-    .to('#svcEyebrow', { opacity: 1, duration: 0.4 }, 2.3);
+    .to('.svc-card--1 .svc-card__flip', { rotationY: 180, rotationZ: -6, x: spreadX, y: liftOuter, duration: 1.1 }, 2.0)
+    .to('.svc-card--2 .svc-card__flip', { rotationY: -180, rotationZ: 0, x: 0, y: liftMid, duration: 1.1 }, 2.0)
+    .to('.svc-card--3 .svc-card__flip', { rotationY: 180, rotationZ: 6, x: -spreadX, y: liftOuter, duration: 1.1 }, 2.0)
+    .to('.svc-card__shade', { opacity: 0.6, duration: 0.5 }, 2.0)
+    .to('#svcEyebrow', { opacity: 1, duration: 0.4 }, 2.7);
 
   /* keep every video playing even if autoplay was deferred */
   const videos = document.querySelectorAll('video');
