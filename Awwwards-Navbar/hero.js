@@ -20,6 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
      on those elements) to avoid channel-stacking surprises */
   gsap.set('.svc-card__label', { y: 22, opacity: 0 });
 
+  /* each card gets its own 3D vanishing point; the turn-in rotationY itself
+     is set via fromTo() inside the scrubbed timeline below (not here) so
+     the cards stay perfectly flat during the crossfade/tiling moment and
+     only start turning once the shatter tween actually begins */
+  gsap.set('.svc-card', { transformPerspective: 1000 });
+
   /* ==============================================
      2. SCROLL — one pinned master timeline:
         phase 1 (0→1)  reel grows to fullscreen
@@ -57,10 +63,25 @@ document.addEventListener('DOMContentLoaded', () => {
     .to('#heroReel', { autoAlpha: 0, duration: 0.2 }, 1.0)
 
   /* ---- phase 2: shatter — video stays fully visible (no opacity change)
-     through the entire rotation, only transform/radius animate ---- */
-    .to('.svc-card--1', { scale: 0.64, rotation: -8, xPercent: -12, yPercent: -4, borderRadius: 16, duration: 1 }, 1.3)
-    .to('.svc-card--2', { scale: 0.64, rotation: 5, xPercent: 0, yPercent: 6, borderRadius: 16, duration: 1 }, 1.3)
-    .to('.svc-card--3', { scale: 0.64, rotation: -6, xPercent: 12, yPercent: -2, borderRadius: 16, duration: 1 }, 1.3)
+     through the entire rotation. rotationY turns each card through real 3D
+     space at the same time as the flat z-axis tilt, scale and separation,
+     so it reads as cards physically turning rather than a flat 2D rotate.
+
+     Each card's turn is split into two plain .to() calls instead of one
+     fromTo(): stage A swings rotationY out to a deep edge-on angle (0→58°)
+     with nothing else moving yet, stage B swings it back past flat down to
+     a small resting tilt (58°→-14°) WHILE the card separates/scales — an
+     arc, not a snap. Using only .to() here (never from()/fromTo()) matters:
+     those render their "from" value the instant they're authored, and since
+     nothing else in this timeline touches rotationY before this point, that
+     stale value would leak backward and show during the crossfade/tiling
+     moment too — .to() only renders once the scrub actually reaches it. ---- */
+    .to('.svc-card--1', { rotationY: 58, duration: 0.4 }, 1.3)
+    .to('.svc-card--1', { scale: 0.64, rotation: -8, rotationY: -14, xPercent: -12, yPercent: -4, borderRadius: 16, duration: 0.6 }, 1.7)
+    .to('.svc-card--2', { rotationY: -48, duration: 0.4 }, 1.3)
+    .to('.svc-card--2', { scale: 0.64, rotation: 5, rotationY: 10, xPercent: 0, yPercent: 6, borderRadius: 16, duration: 0.6 }, 1.7)
+    .to('.svc-card--3', { rotationY: 62, duration: 0.4 }, 1.3)
+    .to('.svc-card--3', { scale: 0.64, rotation: -6, rotationY: -12, xPercent: 12, yPercent: -2, borderRadius: 16, duration: 0.6 }, 1.7)
     .to('#svcEyebrow', { opacity: 1, duration: 0.5 }, 1.7)
     .to('.svc-card__label', { y: 0, opacity: 1, stagger: 0.08, duration: 0.6 }, 1.8);
 
