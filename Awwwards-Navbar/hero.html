@@ -49,40 +49,56 @@
     <div class="svc-stage" id="svcStage" aria-hidden="true">
       <p class="svc-stage__eyebrow" id="svcEyebrow">What we do</p>
 
+      <!-- each card is a real flip: a static perspective shell, an inner
+           .svc-card__flip that takes the rotationY, and two backface-hidden
+           faces (front = video, back = pre-rotated 180deg so it lands
+           facing the camera exactly when the flip completes) -->
       <article class="svc-card svc-card--1">
-        <div class="svc-card__media">
-          <video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" autoplay muted loop playsinline></video>
+        <div class="svc-card__flip">
+          <div class="svc-card__face svc-card__face--front">
+            <div class="svc-card__media">
+              <video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" autoplay muted loop playsinline></video>
+            </div>
+            <div class="svc-card__shade" aria-hidden="true"></div>
+          </div>
+          <div class="svc-card__face svc-card__face--back">
+            <span class="svc-card__num">01</span>
+            <span class="svc-card__name">Brand &amp; Identity</span>
+            <span class="svc-card__desc">Logos, systems, guidelines</span>
+          </div>
         </div>
-        <div class="svc-card__shade" aria-hidden="true"></div>
-        <figcaption class="svc-card__label">
-          <span class="svc-card__num">01</span>
-          <span class="svc-card__name">Brand &amp; Identity</span>
-          <span class="svc-card__desc">Logos, systems, guidelines</span>
-        </figcaption>
       </article>
 
       <article class="svc-card svc-card--2">
-        <div class="svc-card__media">
-          <video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" autoplay muted loop playsinline></video>
+        <div class="svc-card__flip">
+          <div class="svc-card__face svc-card__face--front">
+            <div class="svc-card__media">
+              <video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" autoplay muted loop playsinline></video>
+            </div>
+            <div class="svc-card__shade" aria-hidden="true"></div>
+          </div>
+          <div class="svc-card__face svc-card__face--back">
+            <span class="svc-card__num">02</span>
+            <span class="svc-card__name">Web &amp; Interactive</span>
+            <span class="svc-card__desc">Sites, products, prototypes</span>
+          </div>
         </div>
-        <div class="svc-card__shade" aria-hidden="true"></div>
-        <figcaption class="svc-card__label">
-          <span class="svc-card__num">02</span>
-          <span class="svc-card__name">Web &amp; Interactive</span>
-          <span class="svc-card__desc">Sites, products, prototypes</span>
-        </figcaption>
       </article>
 
       <article class="svc-card svc-card--3">
-        <div class="svc-card__media">
-          <video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" autoplay muted loop playsinline></video>
+        <div class="svc-card__flip">
+          <div class="svc-card__face svc-card__face--front">
+            <div class="svc-card__media">
+              <video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" autoplay muted loop playsinline></video>
+            </div>
+            <div class="svc-card__shade" aria-hidden="true"></div>
+          </div>
+          <div class="svc-card__face svc-card__face--back">
+            <span class="svc-card__num">03</span>
+            <span class="svc-card__name">Motion &amp; Film</span>
+            <span class="svc-card__desc">Reels, ads, title design</span>
+          </div>
         </div>
-        <div class="svc-card__shade" aria-hidden="true"></div>
-        <figcaption class="svc-card__label">
-          <span class="svc-card__num">03</span>
-          <span class="svc-card__name">Motion &amp; Film</span>
-          <span class="svc-card__desc">Reels, ads, title design</span>
-        </figcaption>
       </article>
     </div>
 

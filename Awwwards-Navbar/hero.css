@@ -210,23 +210,51 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   pointer-events: none;
 }
 
+/* outer shell: STATIC perspective + layout (scale/spread/z-tilt). Never
+   gets rotationY itself — that's reserved for .svc-card__flip below, so
+   the 3D turn is never fighting the 2D layout transforms on one matrix. */
 .svc-card {
   position: relative;
   width: 26.667vw; /* 80vw / 3 — matches the reel's fullscreen band width */
   height: 100vh;
-  overflow: hidden;
   flex-shrink: 0;
+  perspective: 1400px;
   box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55);
-  will-change: transform, border-radius;
-  /* own GPU layer, same reasoning as the reel video above */
+  will-change: transform;
+}
+
+/* the actual flip target: rotationY animates here, with preserve-3d so the
+   front/back faces keep their own 3D position (0deg / 180deg) as it turns */
+.svc-card__flip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.svc-card__face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
 
-/* per-card fallback tint (shows if the video is blocked/slow) */
-.svc-card--1 { background: linear-gradient(150deg, #1a2410, #0b0b0c); }
-.svc-card--2 { background: linear-gradient(150deg, #101a24, #0b0b0c); }
-.svc-card--3 { background: linear-gradient(150deg, #241610, #0b0b0c); }
+.svc-card__face--back {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 5px;
+  padding: 22px;
+}
+
+/* per-card fallback/back tint (front shows if the video is blocked/slow;
+   back is the actual resting background behind the service label) */
+.svc-card--1 .svc-card__face { background: linear-gradient(150deg, #1a2410, #0b0b0c); }
+.svc-card--2 .svc-card__face { background: linear-gradient(150deg, #101a24, #0b0b0c); }
+.svc-card--3 .svc-card__face { background: linear-gradient(150deg, #241610, #0b0b0c); }
 
 /* each media is an 80vw-wide layer (matching the reel's fullscreen width,
    not the viewport) offset so the 3 cards tile into one continuous frame */
@@ -248,8 +276,8 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   -webkit-backface-visibility: hidden;
 }
 
-/* darkens as the card turns away from camera — sells the 3D turn as a
-   lighting change, which reads even when the geometric skew alone doesn't */
+/* darkens the front face as the card turns away — sells the first ~90deg
+   of the turn as a lighting change before the back face takes over */
 .svc-card__shade {
   position: absolute;
   inset: 0;
@@ -257,20 +285,6 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   background: #000;
   opacity: 0;
   pointer-events: none;
-}
-
-/* label */
-.svc-card__label {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding: 60px 22px 22px;
-  background: linear-gradient(to top, rgba(11, 11, 12, 0.9), rgba(11, 11, 12, 0));
 }
 
 .svc-card__num {
@@ -327,7 +341,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   .hero__reel {
     width: min(300px, 62vw);
   }
-  .svc-card__label { padding: 44px 14px 16px; }
+  .svc-card__face--back { padding: 16px; }
   .svc-card__desc { display: none; }
   .svc-stage__eyebrow { top: 76px; }
 }
