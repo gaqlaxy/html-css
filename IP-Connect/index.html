@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IP Connect — ICMEG</title>
+<meta name="description" content="IP Connect is ICMEG's intellectual property marketplace for India's screen industry — a content market, pitch forum and script lab under one roof." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='20' fill='%2312100d'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' font-family='Georgia,serif' font-size='18' fill='%23ff5a2b'%3EIC%3C/text%3E%3C/svg%3E" />
+<link rel="stylesheet" href="fonts.css" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- scroll progress -->
+  <div class="scrollbar" aria-hidden="true"><span id="scrollbarFill"></span></div>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#top" class="nav__brand">
+        <span class="nav__mark">IC</span>
+        <span class="nav__word">ICMEG <em>IP Connect</em></span>
+      </a>
+
+      <nav class="nav__links">
+        <a href="#what-is">What it is</a>
+        <a href="#pillars">The three pillars</a>
+        <a href="#edition">2026 Edition</a>
+        <a href="#process">How it works</a>
+      </nav>
+
+      <div class="nav__actions">
+        <a href="#" class="btn btn--ghost btn--sm">Log in</a>
+        <a href="#apply" class="btn btn--solid btn--sm btn--magnetic">Apply</a>
+      </div>
+
+      <button class="nav__burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="menu" id="menu">
+    <nav class="menu__links">
+      <a href="#what-is"><span>01</span>What it is</a>
+      <a href="#pillars"><span>02</span>The three pillars</a>
+      <a href="#edition"><span>03</span>2026 Edition</a>
+      <a href="#process"><span>04</span>How it works</a>
+    </nav>
+    <div class="menu__actions">
+      <a href="#" class="btn btn--ghost">Log in</a>
+      <a href="#apply" class="btn btn--solid">Apply for 2026</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero__grain" aria-hidden="true"></div>
+      <div class="hero__stripes" aria-hidden="true"></div>
+
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <span class="badge js-reveal">
+            <i class="badge__dot"></i>ICMEG IP Connect — 2026 Edition
+          </span>
+
+          <h1 class="hero__title">
+            <span class="hero__line"><span class="w">A</span> <span class="w">content</span> <span class="w">market,</span></span>
+            <span class="hero__line"><span class="w">pitch</span> <span class="w">forum</span> <span class="w accent">&amp;</span></span>
+            <span class="hero__line"><span class="w italic">script</span> <span class="w italic accent">lab</span> <span class="w accent">under</span> <span class="w">one</span> <span class="w">roof.</span></span>
+          </h1>
+
+          <p class="hero__desc js-reveal">Producers license rights, platforms acquire, creators pitch ready scripts, and writers get their stories sharpened. Three days, one venue, in Bengaluru.</p>
+
+          <div class="hero__actions js-reveal">
+            <a href="#apply" class="btn btn--solid btn--magnetic">Apply for 2026 <span class="arrow">→</span></a>
+            <a href="#pillars" class="btn btn--outline btn--magnetic">Explore the pillars</a>
+          </div>
+        </div>
+
+        <div class="hero__card js-reveal" id="editionCard">
+          <div class="ticket">
+            <div class="ticket__top">
+              <span class="ticket__eyebrow">Current edition</span>
+              <span class="status"><i></i>Applications open</span>
+            </div>
+            <h3 class="ticket__title">2026 Edition</h3>
+            <p class="ticket__sub">In partnership with <strong>BISFF</strong></p>
+
+            <div class="ticket__perf" aria-hidden="true"></div>
+
+            <dl class="ticket__rows">
+              <div><dt>Host city</dt><dd>Bengaluru, India</dd></div>
+              <div><dt>Venue</dt><dd>Separate venue · TBA</dd></div>
+              <div><dt>Applications</dt><dd class="is-open">Now open</dd></div>
+            </dl>
+
+            <a href="#edition" class="ticket__cta">See edition details <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker__track" id="heroTicker">
+          <span>Producers</span><span class="dot">·</span><span>Platforms</span><span class="dot">·</span><span>Creators</span><span class="dot">·</span><span>Writers</span><span class="dot">·</span>
+          <span>Producers</span><span class="dot">·</span><span>Platforms</span><span class="dot">·</span><span>Creators</span><span class="dot">·</span><span>Writers</span><span class="dot">·</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT IS IT -->
+    <section class="intro" id="what-is">
+      <div class="container intro__grid">
+        <div class="intro__lead">
+          <span class="eyebrow js-reveal">What is IP Connect</span>
+          <p class="intro__drop js-reveal">IP Connect is ICMEG's intellectual property marketplace for India's screen industry, enabling creators, producers and platforms to trade rights and coordinate deals.</p>
+          <p class="js-reveal">Through our three pillars — the Buyer-Seller Market, Pitch2Deal, and the Script Room — we streamline licensing, curate group pitches, and offer professional script consulting and IP registration in one unified platform.</p>
+        </div>
+
+        <nav class="intro__index js-reveal" aria-label="Pillars quick links">
+          <a href="#pillars" class="intro__index-row"><span>01</span>Buyer-Seller Market</a>
+          <a href="#pillars" class="intro__index-row"><span>02</span>Pitch2Deal</a>
+          <a href="#pillars" class="intro__index-row"><span>03</span>Script Room</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- PILLARS -->
+    <section class="pillars" id="pillars">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow js-reveal">The three pillars</span>
+          <h2 class="js-reveal">Three ways in.<br><em>One platform.</em></h2>
+          <p class="js-reveal">Pick the track that fits where your project is. Each pillar runs its own application — all feeding a single profile and meeting calendar.</p>
+        </div>
+
+        <div class="filmstrip">
+          <div class="filmstrip__sprockets" aria-hidden="true"></div>
+
+          <article class="frame js-frame" style="--c: var(--clay)">
+            <span class="frame__num">01</span>
+            <span class="frame__eyebrow">Licensing &amp; trading</span>
+            <h3>Buyer-Seller Market</h3>
+            <p>Producers list titles and rights; platforms and channels acquire. The trading floor where catalogues meet acquisition mandates.</p>
+            <div class="frame__tags"><span>Sellers · producers</span><span>Buyers · platforms</span></div>
+            <a href="#edition" class="frame__link">Explore the market <span class="arrow">→</span></a>
+          </article>
+
+          <article class="frame js-frame" style="--c: var(--wine)">
+            <span class="frame__num">02</span>
+            <span class="frame__eyebrow">Scripts meet producers</span>
+            <h3>Pitch2Deal</h3>
+            <p>Creators with a ready script pitch directly to producers and financiers — looking for the partner, the money, or the green light.</p>
+            <div class="frame__tags"><span>Creators · ready scripts</span></div>
+            <a href="#edition" class="frame__link">See how pitching works <span class="arrow">→</span></a>
+          </article>
+
+          <article class="frame js-frame" style="--c: var(--gold)">
+            <span class="frame__num">03</span>
+            <span class="frame__eyebrow">Two services</span>
+            <h3>Script Room</h3>
+            <p>Develop and protect the work. Script Consulting returns a structured report; Script Lab handles copyright, registration and IP.</p>
+            <div class="frame__tags"><span>Script Consulting</span><span>Script Lab</span></div>
+            <a href="#edition" class="frame__link">View both services <span class="arrow">→</span></a>
+          </article>
+
+          <div class="filmstrip__sprockets" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2026 EDITION -->
+    <section class="edition" id="edition">
+      <div class="container edition__grid">
+        <div class="edition__info js-reveal">
+          <span class="eyebrow">2026 Edition</span>
+          <h2>Bengaluru gets<br><em>the room.</em></h2>
+          <p>This year's edition runs alongside the Bengaluru International Short Film Festival, at a dedicated venue in Bengaluru. Choose your role, create an account, and submit your materials — light curation keeps the room high-signal.</p>
+
+          <div class="stub">
+            <div class="stub__row"><span>Partner</span><strong>BISFF</strong></div>
+            <div class="stub__row"><span>City</span><strong>Bengaluru</strong></div>
+            <div class="stub__row"><span>Venue</span><strong>TBA</strong></div>
+          </div>
+        </div>
+
+        <div class="roles js-reveal" id="apply">
+          <a href="#" class="role-card">
+            <span class="role-card__badge">S</span>
+            <span class="role-card__name">Seller</span>
+            <p>Producers listing titles &amp; rights</p>
+          </a>
+          <a href="#" class="role-card">
+            <span class="role-card__badge">B</span>
+            <span class="role-card__name">Buyer</span>
+            <p>Platforms &amp; channels acquiring</p>
+          </a>
+          <a href="#" class="role-card">
+            <span class="role-card__badge">P</span>
+            <span class="role-card__name">Pitch2Deal</span>
+            <p>Creators with a ready script</p>
+          </a>
+          <a href="#" class="role-card">
+            <span class="role-card__badge">R</span>
+            <span class="role-card__name">Script Room</span>
+            <p>Consulting or Lab services</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process" id="process">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow js-reveal">How it works</span>
+          <h2 class="js-reveal">From application<br><em>to handshake.</em></h2>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline__track"><span class="timeline__progress" id="timelineProgress"></span></div>
+
+          <ol class="timeline__steps">
+            <li class="step js-step" style="--c: var(--clay)">
+              <span class="step__node"><span>01</span></span>
+              <h3>Pick your role</h3>
+              <p>Land on the 2026 edition and choose how you take part.</p>
+            </li>
+            <li class="step js-step" style="--c: var(--wine)">
+              <span class="step__node"><span>02</span></span>
+              <h3>Apply &amp; upload</h3>
+              <p>Fill the short form, create an account, add your materials.</p>
+            </li>
+            <li class="step js-step" style="--c: var(--gold)">
+              <span class="step__node"><span>03</span></span>
+              <h3>Get reviewed</h3>
+              <p>ICMEG curates lightly to keep the room high-signal.</p>
+            </li>
+            <li class="step js-step" style="--c: var(--navy)">
+              <span class="step__node"><span>04</span></span>
+              <h3>Request meetings</h3>
+              <p>Approved? Browse participants and book time slots.</p>
+            </li>
+            <li class="step js-step" style="--c: var(--ok)">
+              <span class="step__node"><span>05</span></span>
+              <h3>Close in person</h3>
+              <p>Deals and consultations happen at the venue.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINALE -->
+    <section class="finale">
+      <div class="finale__sweep" aria-hidden="true"></div>
+      <div class="container finale__grid">
+        <div class="finale__copy">
+          <span class="eyebrow eyebrow--light js-reveal">The IP persists</span>
+          <h2 class="js-reveal">Every edition archives.<br>Your participation <em>doesn't expire.</em></h2>
+          <p class="js-reveal">When 2026 closes, it joins the Past Editions wall and you become alumni data under the permanent IP — carried into every future edition.</p>
+        </div>
+        <a href="#" class="btn btn--paper btn--magnetic js-reveal">Browse past editions <span class="arrow">→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <span class="footer__mark">ICMEG</span>
+        <p>Indian Council for Media, Entertainment &amp; Gaming. IP Connect — where ideas become IPs, and IPs become business.</p>
+      </div>
+
+      <div class="footer__col">
+        <h4>Pillars</h4>
+        <a href="#pillars">Buyer-Seller Market</a>
+        <a href="#pillars">Pitch2Deal</a>
+        <a href="#pillars">Script Room</a>
+      </div>
+
+      <div class="footer__col">
+        <h4>IP Connect</h4>
+        <a href="#what-is">What it is</a>
+        <a href="#edition">2026 Edition</a>
+        <a href="#process">How it works</a>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <p>© 2026 ICMEG · icmeg.org/ip-connect</p>
+      <button id="toTop" class="footer__totop" aria-label="Back to top">Back to top ↑</button>
+    </div>
+  </footer>
+
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
