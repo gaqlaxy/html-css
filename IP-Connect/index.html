@@ -18,8 +18,9 @@
   <header class="nav" id="nav">
     <div class="nav__inner">
       <a href="#top" class="nav__brand">
-        <span class="nav__mark">IC</span>
-        <span class="nav__word">ICMEG <em>IP Connect</em></span>
+        <span class="nav__word">ICMEG</span>
+        <span class="nav__rule" aria-hidden="true"></span>
+        <span class="nav__sub">IP Connect</span>
       </a>
 
       <nav class="nav__links">
@@ -58,46 +59,51 @@
     <!-- HERO -->
     <section class="hero" id="top">
       <div class="hero__grain" aria-hidden="true"></div>
-      <div class="hero__stripes" aria-hidden="true"></div>
 
-      <div class="container hero__grid">
-        <div class="hero__copy">
-          <span class="badge js-reveal">
-            <i class="badge__dot"></i>ICMEG IP Connect — 2026 Edition
-          </span>
-
-          <h1 class="hero__title">
-            <span class="hero__line"><span class="w">A</span> <span class="w">content</span> <span class="w">market,</span></span>
-            <span class="hero__line"><span class="w">pitch</span> <span class="w">forum</span> <span class="w accent">&amp;</span></span>
-            <span class="hero__line"><span class="w italic">script</span> <span class="w italic accent">lab</span> <span class="w accent">under</span> <span class="w">one</span> <span class="w">roof.</span></span>
-          </h1>
-
-          <p class="hero__desc js-reveal">Producers license rights, platforms acquire, creators pitch ready scripts, and writers get their stories sharpened. Three days, one venue, in Bengaluru.</p>
-
-          <div class="hero__actions js-reveal">
-            <a href="#apply" class="btn btn--solid btn--magnetic">Apply for 2026 <span class="arrow">→</span></a>
-            <a href="#pillars" class="btn btn--outline btn--magnetic">Explore the pillars</a>
-          </div>
+      <div class="container">
+        <div class="hero__kicker js-reveal">
+          <span>ICMEG IP Connect</span>
+          <span class="hero__kicker-rule" aria-hidden="true"></span>
+          <span>2026 Edition</span>
+          <span class="hero__kicker-rule" aria-hidden="true"></span>
+          <span>Bengaluru</span>
         </div>
 
-        <div class="hero__card js-reveal" id="editionCard">
-          <div class="ticket">
-            <div class="ticket__top">
-              <span class="ticket__eyebrow">Current edition</span>
-              <span class="status"><i></i>Applications open</span>
+        <div class="hero__grid">
+          <div class="hero__copy">
+            <h1 class="hero__title">
+              <span class="hero__line"><span class="w">A</span> <span class="w">content</span> <span class="w">market,</span></span>
+              <span class="hero__line"><span class="w">pitch</span> <span class="w">forum</span> <span class="w accent">&amp;</span></span>
+              <span class="hero__line"><span class="w italic">script</span> <span class="w italic accent">lab</span> <span class="w accent">under</span> <span class="w">one</span> <span class="w">roof.</span></span>
+            </h1>
+
+            <p class="hero__desc js-reveal">Producers license rights, platforms acquire, creators pitch ready scripts, and writers get their stories sharpened. Three days, one venue, in Bengaluru.</p>
+
+            <div class="hero__actions js-reveal">
+              <a href="#apply" class="btn btn--solid btn--magnetic">Apply for 2026 <span class="arrow">→</span></a>
+              <a href="#pillars" class="btn btn--outline btn--magnetic">Explore the pillars</a>
             </div>
-            <h3 class="ticket__title">2026 Edition</h3>
-            <p class="ticket__sub">In partnership with <strong>BISFF</strong></p>
+          </div>
 
-            <div class="ticket__perf" aria-hidden="true"></div>
+          <div class="hero__card js-reveal" id="editionCard">
+            <div class="ticket">
+              <div class="ticket__top">
+                <span class="ticket__eyebrow">Current edition</span>
+                <span class="status"><i></i>Applications open</span>
+              </div>
+              <h3 class="ticket__title">2026 Edition</h3>
+              <p class="ticket__sub">In partnership with <strong>BISFF</strong></p>
 
-            <dl class="ticket__rows">
-              <div><dt>Host city</dt><dd>Bengaluru, India</dd></div>
-              <div><dt>Venue</dt><dd>Separate venue · TBA</dd></div>
-              <div><dt>Applications</dt><dd class="is-open">Now open</dd></div>
-            </dl>
+              <div class="ticket__perf" aria-hidden="true"></div>
 
-            <a href="#edition" class="ticket__cta">See edition details <span class="arrow">→</span></a>
+              <dl class="ticket__rows">
+                <div><dt>Host city</dt><dd>Bengaluru, India</dd></div>
+                <div><dt>Venue</dt><dd>Separate venue · TBA</dd></div>
+                <div><dt>Applications</dt><dd class="is-open">Now open</dd></div>
+              </dl>
+
+              <a href="#edition" class="ticket__cta">See edition details <span class="arrow">→</span></a>
+            </div>
           </div>
         </div>
       </div>
@@ -131,42 +137,50 @@
     <section class="pillars" id="pillars">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow js-reveal">The three pillars</span>
+          <span class="eyebrow eyebrow--light js-reveal">The three pillars</span>
           <h2 class="js-reveal">Three ways in.<br><em>One platform.</em></h2>
           <p class="js-reveal">Pick the track that fits where your project is. Each pillar runs its own application — all feeding a single profile and meeting calendar.</p>
         </div>
 
-        <div class="filmstrip">
-          <div class="filmstrip__sprockets" aria-hidden="true"></div>
-
-          <article class="frame js-frame" style="--c: var(--clay)">
-            <span class="frame__num">01</span>
-            <span class="frame__eyebrow">Licensing &amp; trading</span>
-            <h3>Buyer-Seller Market</h3>
-            <p>Producers list titles and rights; platforms and channels acquire. The trading floor where catalogues meet acquisition mandates.</p>
-            <div class="frame__tags"><span>Sellers · producers</span><span>Buyers · platforms</span></div>
-            <a href="#edition" class="frame__link">Explore the market <span class="arrow">→</span></a>
+        <div class="index-list index-list--dark">
+          <article class="index-row js-row" style="--c: var(--clay)">
+            <span class="index-row__num">01</span>
+            <div class="index-row__head">
+              <span class="index-row__eyebrow">Licensing &amp; trading</span>
+              <h3>Buyer-Seller Market</h3>
+            </div>
+            <p class="index-row__desc">Producers list titles and rights; platforms and channels acquire. The trading floor where catalogues meet acquisition mandates.</p>
+            <div class="index-row__meta">
+              <div class="index-row__tags"><span>Sellers · producers</span><span>Buyers · platforms</span></div>
+              <a href="#edition" class="index-row__link">Explore the market <span class="arrow">→</span></a>
+            </div>
           </article>
 
-          <article class="frame js-frame" style="--c: var(--wine)">
-            <span class="frame__num">02</span>
-            <span class="frame__eyebrow">Scripts meet producers</span>
-            <h3>Pitch2Deal</h3>
-            <p>Creators with a ready script pitch directly to producers and financiers — looking for the partner, the money, or the green light.</p>
-            <div class="frame__tags"><span>Creators · ready scripts</span></div>
-            <a href="#edition" class="frame__link">See how pitching works <span class="arrow">→</span></a>
+          <article class="index-row js-row" style="--c: var(--wine)">
+            <span class="index-row__num">02</span>
+            <div class="index-row__head">
+              <span class="index-row__eyebrow">Scripts meet producers</span>
+              <h3>Pitch2Deal</h3>
+            </div>
+            <p class="index-row__desc">Creators with a ready script pitch directly to producers and financiers — looking for the partner, the money, or the green light.</p>
+            <div class="index-row__meta">
+              <div class="index-row__tags"><span>Creators · ready scripts</span></div>
+              <a href="#edition" class="index-row__link">See how pitching works <span class="arrow">→</span></a>
+            </div>
           </article>
 
-          <article class="frame js-frame" style="--c: var(--gold)">
-            <span class="frame__num">03</span>
-            <span class="frame__eyebrow">Two services</span>
-            <h3>Script Room</h3>
-            <p>Develop and protect the work. Script Consulting returns a structured report; Script Lab handles copyright, registration and IP.</p>
-            <div class="frame__tags"><span>Script Consulting</span><span>Script Lab</span></div>
-            <a href="#edition" class="frame__link">View both services <span class="arrow">→</span></a>
+          <article class="index-row js-row" style="--c: var(--gold)">
+            <span class="index-row__num">03</span>
+            <div class="index-row__head">
+              <span class="index-row__eyebrow">Two services</span>
+              <h3>Script Room</h3>
+            </div>
+            <p class="index-row__desc">Develop and protect the work. Script Consulting returns a structured report; Script Lab handles copyright, registration and IP.</p>
+            <div class="index-row__meta">
+              <div class="index-row__tags"><span>Script Consulting</span><span>Script Lab</span></div>
+              <a href="#edition" class="index-row__link">View both services <span class="arrow">→</span></a>
+            </div>
           </article>
-
-          <div class="filmstrip__sprockets" aria-hidden="true"></div>
         </div>
       </div>
     </section>
@@ -187,25 +201,30 @@
         </div>
 
         <div class="roles js-reveal" id="apply">
-          <a href="#" class="role-card">
-            <span class="role-card__badge">S</span>
-            <span class="role-card__name">Seller</span>
-            <p>Producers listing titles &amp; rights</p>
+          <span class="roles__label">Choose a role</span>
+          <a href="#" class="role-row">
+            <span class="role-row__mark">S</span>
+            <span class="role-row__name">Seller</span>
+            <span class="role-row__desc">Producers listing titles &amp; rights</span>
+            <span class="arrow">→</span>
           </a>
-          <a href="#" class="role-card">
-            <span class="role-card__badge">B</span>
-            <span class="role-card__name">Buyer</span>
-            <p>Platforms &amp; channels acquiring</p>
+          <a href="#" class="role-row">
+            <span class="role-row__mark">B</span>
+            <span class="role-row__name">Buyer</span>
+            <span class="role-row__desc">Platforms &amp; channels acquiring</span>
+            <span class="arrow">→</span>
           </a>
-          <a href="#" class="role-card">
-            <span class="role-card__badge">P</span>
-            <span class="role-card__name">Pitch2Deal</span>
-            <p>Creators with a ready script</p>
+          <a href="#" class="role-row">
+            <span class="role-row__mark">P</span>
+            <span class="role-row__name">Pitch2Deal</span>
+            <span class="role-row__desc">Creators with a ready script</span>
+            <span class="arrow">→</span>
           </a>
-          <a href="#" class="role-card">
-            <span class="role-card__badge">R</span>
-            <span class="role-card__name">Script Room</span>
-            <p>Consulting or Lab services</p>
+          <a href="#" class="role-row">
+            <span class="role-row__mark">R</span>
+            <span class="role-row__name">Script Room</span>
+            <span class="role-row__desc">Consulting or Lab services</span>
+            <span class="arrow">→</span>
           </a>
         </div>
       </div>
@@ -224,27 +243,27 @@
 
           <ol class="timeline__steps">
             <li class="step js-step" style="--c: var(--clay)">
-              <span class="step__node"><span>01</span></span>
+              <span class="step__num">01</span>
               <h3>Pick your role</h3>
               <p>Land on the 2026 edition and choose how you take part.</p>
             </li>
             <li class="step js-step" style="--c: var(--wine)">
-              <span class="step__node"><span>02</span></span>
+              <span class="step__num">02</span>
               <h3>Apply &amp; upload</h3>
               <p>Fill the short form, create an account, add your materials.</p>
             </li>
             <li class="step js-step" style="--c: var(--gold)">
-              <span class="step__node"><span>03</span></span>
+              <span class="step__num">03</span>
               <h3>Get reviewed</h3>
               <p>ICMEG curates lightly to keep the room high-signal.</p>
             </li>
             <li class="step js-step" style="--c: var(--navy)">
-              <span class="step__node"><span>04</span></span>
+              <span class="step__num">04</span>
               <h3>Request meetings</h3>
               <p>Approved? Browse participants and book time slots.</p>
             </li>
             <li class="step js-step" style="--c: var(--ok)">
-              <span class="step__node"><span>05</span></span>
+              <span class="step__num">05</span>
               <h3>Close in person</h3>
               <p>Deals and consultations happen at the venue.</p>
             </li>
@@ -255,7 +274,6 @@
 
     <!-- FINALE -->
     <section class="finale">
-      <div class="finale__sweep" aria-hidden="true"></div>
       <div class="container finale__grid">
         <div class="finale__copy">
           <span class="eyebrow eyebrow--light js-reveal">The IP persists</span>
