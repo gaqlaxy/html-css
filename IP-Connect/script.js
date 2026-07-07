@@ -45,11 +45,4 @@
     }, 1200);
   }
 
-  /* ---------- nav shadow on scroll ---------- */
-  const nav = document.getElementById("nav");
-  const onScroll = () => {
-    nav.style.boxShadow = window.scrollY > 8 ? "0 1px 0 rgba(28,23,18,.16)" : "none";
-  };
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
 })();
