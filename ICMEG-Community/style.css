@@ -1,0 +1,503 @@
+/* ============ TOKENS ============ */
+:root {
+  --black:  #07070b;
+  --ink:    #111017;
+  --paper:  #f6f3ec;
+  --orange: #ff5a1f;
+  --pink:   #ff3d7f;
+  --purple: #8b3ff2;
+
+  --display: "Bricolage Grotesque", sans-serif;
+  --body: "DM Sans", sans-serif;
+}
+
+/* ============ RESET ============ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--paper);
+  font-family: var(--body);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+::selection { background: var(--orange); color: var(--black); }
+
+/* ============ DUOTONE TILE PAIRS ============ */
+.duo-orange-black  { background: linear-gradient(155deg, var(--orange), var(--black) 75%); }
+.duo-pink-black    { background: linear-gradient(155deg, var(--pink),   var(--black) 75%); }
+.duo-purple-black  { background: linear-gradient(155deg, var(--purple), var(--black) 75%); }
+.duo-orange-pink   { background: linear-gradient(155deg, var(--orange), var(--pink)); }
+.duo-pink-purple   { background: linear-gradient(155deg, var(--pink),   var(--purple)); }
+.duo-purple-orange { background: linear-gradient(155deg, var(--purple), var(--orange)); }
+
+/* ============ NAV ============ */
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.75rem clamp(1.5rem, 5vw, 4rem);
+  mix-blend-mode: difference;
+}
+
+.nav-logo {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.nav-links a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.75;
+  transition: opacity 0.25s ease;
+}
+
+.nav-links a:hover { opacity: 1; }
+
+.nav-cta {
+  border: 1px solid rgba(246, 243, 236, 0.35);
+  border-radius: 999px;
+  padding: 0.6rem 1.3rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.nav-cta:hover {
+  background: var(--paper);
+  color: var(--black);
+}
+
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.nav-burger span {
+  width: 22px;
+  height: 2px;
+  background: var(--paper);
+  display: block;
+}
+
+.nav-mobile {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  transform: translateY(-100%);
+  transition: transform 0.4s ease;
+}
+
+.nav-mobile.open { transform: translateY(0); }
+
+.nav-mobile a {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 2rem;
+}
+
+/* ============ SCENE SCAFFOLDING ============ */
+.scene {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.scene-inner {
+  width: 100%;
+  will-change: transform, filter;
+}
+
+.scene-select { background: var(--ink); }
+
+.scene-eyebrow,
+.section-eyebrow {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 1rem;
+}
+
+.scene-title,
+.section-title {
+  font-family: var(--display);
+  font-weight: 800;
+  text-align: center;
+  font-size: clamp(2.2rem, 6vw, 4.2rem);
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+}
+
+/* ============ ARC TILES ============ */
+.arc-track {
+  margin: 4rem auto 2rem;
+  max-width: 1400px;
+  padding: 0 1.5rem;
+}
+
+.arc-tiles {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+}
+
+.arc-tile {
+  position: relative;
+  width: 130px;
+  height: 170px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.6);
+  transition: transform 0.35s ease;
+  transform: translateY(var(--ty, 0)) rotate(var(--rot, 0deg));
+}
+
+.arc-tile:hover {
+  transform: translateY(calc(var(--ty, 0) - 10px)) rotate(var(--rot, 0deg));
+}
+
+.tile-mono {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 2.2rem;
+}
+
+.tile-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.scene-hint {
+  text-align: center;
+  margin-top: 2.5rem;
+  font-size: 0.85rem;
+  opacity: 0.6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.hint-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--orange);
+  display: inline-block;
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+/* ============ HERO SCENE ============ */
+.scene-hero {
+  background: var(--black);
+  text-align: center;
+  padding: 6rem 1.5rem;
+}
+
+.hero-collage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0;
+  opacity: 0.22;
+  z-index: 0;
+}
+
+.hero-collage span { display: block; }
+
+.home-headline {
+  position: relative;
+  z-index: 1;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2.6rem, 9vw, 7rem);
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+}
+
+.line-wrap {
+  display: block;
+  overflow: hidden;
+}
+
+.line { display: block; }
+
+.hero-sub {
+  position: relative;
+  z-index: 1;
+  margin-top: 1.75rem;
+  font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+  letter-spacing: 0.04em;
+  opacity: 0.65;
+}
+
+.hero-stats {
+  position: relative;
+  z-index: 1;
+  margin-top: 3.5rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(1.75rem, 5vw, 4.5rem);
+}
+
+.stat { text-align: center; }
+
+.stat-num {
+  display: block;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--orange);
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  margin-top: 0.25rem;
+}
+
+/* ============ VERTICAL CARDS ============ */
+.verticals {
+  background: var(--black);
+  padding: 8rem clamp(1.5rem, 5vw, 4rem);
+}
+
+.section-title { margin-bottom: 3.5rem; }
+
+.vertical-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.v-card {
+  position: relative;
+  border-radius: 24px;
+  padding: 2rem;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  transition: transform 0.35s ease;
+}
+
+.v-card:hover { transform: translateY(-6px); }
+
+.v-card--accent {
+  grid-column: span 2;
+  grid-row: span 2;
+  min-height: 100%;
+}
+
+.v-mono {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 3rem;
+}
+
+.v-card--accent .v-mono { font-size: 5rem; }
+
+.v-name {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.3rem;
+  margin-top: 1rem;
+}
+
+.v-card--accent .v-name { font-size: 2rem; }
+
+.v-copy {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-top: 0.5rem;
+  max-width: 32ch;
+}
+
+/* ============ MARQUEE ============ */
+.marquee {
+  background: var(--paper);
+  color: var(--black);
+  overflow: hidden;
+  padding: 1.5rem 0;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  letter-spacing: -0.02em;
+  animation: marquee 32s linear infinite;
+}
+
+.marquee-track .dot { color: var(--orange); }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  background: var(--ink);
+  padding: 6rem clamp(1.5rem, 5vw, 4rem) 2.5rem;
+}
+
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid rgba(246, 243, 236, 0.1);
+  margin-bottom: 3.5rem;
+}
+
+.footer-cta {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.footer-btn {
+  border: 1px solid var(--paper);
+  border-radius: 999px;
+  padding: 1rem 2rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.footer-btn:hover {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--black);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(3, 1fr);
+  gap: 2rem;
+  padding-bottom: 3rem;
+}
+
+.footer-col { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.footer-logo {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+.footer-tag { font-size: 0.85rem; opacity: 0.6; max-width: 28ch; }
+
+.footer-heading {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 0.25rem;
+}
+
+.footer-col a {
+  font-size: 0.9rem;
+  opacity: 0.75;
+  transition: opacity 0.25s ease;
+}
+
+.footer-col a:hover { opacity: 1; }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  opacity: 0.45;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(246, 243, 236, 0.1);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-cta { display: none; }
+  .nav-burger { display: flex; }
+
+  .vertical-grid { grid-template-columns: repeat(2, 1fr); }
+  .v-card--accent { grid-column: span 2; grid-row: span 1; min-height: 260px; }
+
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 560px) {
+  .vertical-grid { grid-template-columns: 1fr; }
+  .v-card--accent { grid-column: span 1; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .arc-tile { width: 108px; height: 150px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  .hint-dot { animation: none; }
+}
